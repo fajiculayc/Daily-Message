@@ -3,24 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Message for My Love</title>
+    <title>My Love's Daily Oasis</title>
     <link rel="stylesheet" href="style.css">
-    
     <link rel="apple-touch-icon" href="icon.png"> 
-    
     <link rel="icon" href="icon.png" type="image/png"> 
-    
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Sacramento&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <p id="messageDisplay">Loading your daily message...</p>
-        <button id="refreshButton">See a different message</button>
+    <div class="app-container">
+
+        <header>
+            <button id="backButton" class="back-button hidden">&larr; Back</button>
+            <h1 id="screenTitle">Daily Message</h1>
+        </header>
+
+        <section id="dailyMessageScreen" class="screen active">
+            <div class="message-card">
+                <p id="dailyMessageDisplay" class="message-text">Loading your daily message...</p>
+            </div>
+            <button id="dailyRefreshButton" class="main-button">Simulate Next Day</button>
+            <button id="goToCategoriesButton" class="secondary-button">Explore More Messages</button>
+        </section>
+
+        <section id="categorySelectionScreen" class="screen hidden">
+            <div class="category-buttons">
+                <button class="category-button" data-category="love">How I Love Her</button>
+                <button class="category-button" data-category="motivation">Motivation</button>
+                <button class="category-button" data-category="doubts">If She Has Doubts</button>
+                <button class="category-button" data-category="lonely">If She Is Lonely/Sad</button>
+                <button class="category-button" data-category="happy">If She Is Happy</button>
+                <button id="viewHistoryButton" class="secondary-button">View Message History</button>
+            </div>
+        </section>
+
+        <section id="categoryMessageScreen" class="screen hidden">
+            <div class="message-card envelope-container">
+                <div class="envelope">
+                    <div class="letter" id="categoryMessageDisplay">
+                        Tap "Open Letter" to reveal your message...
+                    </div>
+                </div>
+            </div>
+            <button id="openLetterButton" class="main-button">Open Letter</button>
+            <button id="nextCategoryMessageButton" class="secondary-button hidden">Next Message</button>
+        </section>
+
+        <section id="historyScreen" class="screen hidden">
+            <div class="history-list-container">
+                <ul id="messageHistoryList">
+                    <li>No history yet!</li>
+                </ul>
+            </div>
+            <button id="clearHistoryButton" class="secondary-button">Clear History</button>
+        </section>
+
     </div>
     <script src="script.js"></script>
 </body>
