@@ -30,80 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageHistoryList = document.getElementById('messageHistoryList');
     const clearHistoryButton = document.getElementById('clearHistoryButton');
 
-    // --- STEP 2: Define Message Categories ---
-    // IMPORTANT: Customize these messages! Add many more for a rich experience.
-    // Ensure each array has at least one message.
-    const messageCategories = {
-        daily: [
-            "You are the most amazing person I've ever met. Every day with you is a gift.",
-            "Just a reminder of how much I love you. More than words can say.",
-            "You inspire me every single day. Keep being you!",
-            "Thinking of you and smiling. You brighten my world.",
-            "No matter what, I'm always here for you. ❤️",
-            "You make even the ordinary moments extraordinary.",
-            "Every adventure with you is my favorite adventure.",
-            "Wishing you a day as beautiful as you are.",
-            "My love for you grows stronger with each passing day.",
-            "You have a way of making everything better.",
-            "I'm so incredibly grateful to have you in my life.",
-            "Just wanted to send you some love and positive vibes today!",
-        ],
-        love: [
-            "My heart skips a beat every time I think of you.",
-            "You're the missing piece I never knew I needed.",
-            "I fall for you a little more each day.",
-            "Being with you feels like coming home.",
-            "Your smile is my favorite thing in the world.",
-            "You make my world a brighter place.",
-            "I cherish every moment we spend together.",
-            "Just thinking about you makes me happy.",
-            "You are truly beautiful, inside and out.",
-            "You're my everything, my love.",
-            "Forever grateful for your love and presence.",
-            "My heart belongs to you, always."
-        ],
-        motivation: [
-            "You are capable of incredible things. Believe in yourself!",
-            "Every challenge is an opportunity to grow. You've got this!",
-            "Don't give up. Great things take time.",
-            "Your strength is inspiring. Keep pushing forward!",
-            "Remember your goals and crush them today!",
-            "You are stronger than you think. Keep shining!",
-            "Believe in your dreams, they know the way.",
-            "Take a deep breath and conquer the day.",
-            "Your potential is limitless. Go for it!",
-            "Embrace the journey, celebrate every step."
-        ],
-        doubts: [
-            "It's okay to feel unsure sometimes. I'm here to remind you how amazing you are.",
-            "When doubt creeps in, remember all you've overcome.",
-            "You are loved, valued, and enough. Don't let doubts define you.",
-            "Talk to me if you're struggling. We'll face it together.",
-            "Your feelings are valid, but your strength is greater than any doubt.",
-            "You're doing better than you think. Keep trusting yourself.",
-            "Don't compare your behind-the-scenes to someone else's highlight reel.",
-            "You are resilient and capable. This moment of doubt will pass."
-        ],
-        lonely: [
-            "Even when we're apart, you're always in my thoughts.",
-            "Sending you a warm hug and all my love.",
-            "You are never truly alone. I'm always just a call away.",
-            "Thinking of you and wishing I could be there to give you a big squeeze.",
-            "Let my love be a comfort to you when you feel lonely.",
-            "Distance means so little when someone means so much.",
-            "Close your eyes and imagine me right beside you. I'm there."
-        ],
-        happy: [
-            "So happy to know you're feeling joyful today! Spread that sunshine!",
-            "Your happiness is contagious. Keep shining brightly!",
-            "Seeing you happy makes my day infinitely better.",
-            "Embrace every moment of joy. You deserve all the happiness!",
-            "What wonderful news! So thrilled for you!",
-            "May your happiness grow exponentially today!",
-            "Let your joy overflow and inspire those around you."
-        ]
-    };
-
     // --- Global Variables for State Management ---
     let currentCategory = null; // Stores the currently selected category (e.g., 'love', 'motivation')
     let currentMessageForCategoryScreen = null; // Stores the message currently displayed in the envelope
@@ -274,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // --- STEP 3: Event Listeners ---
+    // --- STEP 2: Event Listeners ---
 
     // Initial load: Display daily message
     selectAndDisplayDailyMessage();
