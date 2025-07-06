@@ -3,66 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Love's Daily Oasis</title>
-    <link rel="stylesheet" href="style.css">
+    <title>A Message For You</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css"> 
+    
     <link rel="apple-touch-icon" href="icon.png"> 
     <link rel="icon" href="icon.png" type="image/png"> 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Sacramento&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="app-container">
+<body class="bg-gradient-to-br from-rose-100 to-teal-100 min-h-screen flex items-center justify-center p-4">
 
-        <header>
-            <button id="backButton" class="back-button hidden">&larr; Back</button>
-            <h1 id="screenTitle">Daily Message</h1>
-        </header>
+    <div class="w-full max-w-5xl lg:flex bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl shadow-rose-200/50 p-8 gap-8 fade-in">
+        
+        <div class="lg:w-2/3 w-full flex flex-col items-center justify-center text-center p-4">
+            <h1 class="handwriting text-5xl text-rose-500 mb-4">A Message For You</h1>
+            <p class="text-gray-500 mb-8">A special note for my favorite person, today and always.</p>
 
-        <section id="dailyMessageScreen" class="screen active">
-            <div class="message-card">
-                <p id="dailyMessageDisplay" class="message-text">Loading your daily message...</p>
+            <div class="border-t-2 border-dashed border-gray-300 w-1/2 mx-auto my-6"></div>
+
+            <div class="min-h-[120px] flex items-center justify-center w-full">
+                <p id="dailyMessageDisplay" class="text-2xl text-gray-700 leading-relaxed">
+                    Loading today's message...
+                </p>
             </div>
-            <button id="dailyRefreshButton" class="main-button">Simulate Next Day</button>
-            <button id="goToCategoriesButton" class="secondary-button">Explore More Messages</button>
-        </section>
+            
+            <div class="border-t-2 border-dashed border-gray-300 w-1/2 mx-auto my-6"></div>
 
-        <section id="categorySelectionScreen" class="screen hidden">
-            <div class="category-buttons">
-                <button class="category-button" data-category="love">How I Love Her</button>
-                <button class="category-button" data-category="motivation">Motivation</button>
-                <button class="category-button" data-category="doubts">If She Has Doubts</button>
-                <button class="category-button" data-category="lonely">If She Is Lonely/Sad</button>
-                <button class="category-button" data-category="happy">If She Is Happy</button>
-                <button id="viewHistoryButton" class="secondary-button">View Message History</button>
-            </div>
-        </section>
+            <p class="text-rose-400 text-3xl mt-4">&hearts;</p>
+            <p class="text-gray-400 text-sm mt-2" id="dateDisplay"></p>
+        </div>
 
-        <section id="categoryMessageScreen" class="screen hidden">
-            <div class="message-card envelope-container">
-                <div class="envelope">
-                    <div class="letter" id="categoryMessageDisplay">
-                        Tap "Open Letter" to reveal your message...
-                    </div>
-                </div>
+        <div class="lg:w-1/3 w-full flex flex-col items-center p-4 border-t lg:border-t-0 lg:border-l border-dashed border-gray-300 pt-8 lg:pt-0 lg:pl-8">
+            <h2 class="handwriting text-4xl text-rose-500 mb-6">Need a lift?</h2>
+            
+            <div class="flex flex-wrap justify-center gap-3 mb-8 w-full">
+                <button class="mood-button bg-rose-200 text-rose-700 hover:bg-rose-300 px-4 py-2 rounded-full text-sm font-semibold transition" data-mood="happy">When Happy</button>
+                <button class="mood-button bg-blue-200 text-blue-700 hover:bg-blue-300 px-4 py-2 rounded-full text-sm font-semibold transition" data-mood="sad">When Sad</button>
+                <button class="mood-button bg-red-200 text-red-700 hover:bg-red-300 px-4 py-2 rounded-full text-sm font-semibold transition" data-mood="mad">When Mad</button>
+                <button class="mood-button bg-purple-200 text-purple-700 hover:bg-purple-300 px-4 py-2 rounded-full text-sm font-semibold transition" data-mood="tampo">When Tampo</button>
+                <button class="mood-button bg-yellow-200 text-yellow-700 hover:bg-yellow-300 px-4 py-2 rounded-full text-sm font-semibold transition" data-mood="doubt">When in Doubt</button>
+                <button class="mood-button bg-green-200 text-green-700 hover:bg-green-300 px-4 py-2 rounded-full text-sm font-semibold transition" data-mood="motivation">Need Motivation</button>
             </div>
-            <button id="openLetterButton" class="main-button">Open Letter</button>
-            <button id="nextCategoryMessageButton" class="secondary-button hidden">Next Message</button>
-        </section>
 
-        <section id="historyScreen" class="screen hidden">
-            <div class="history-list-container">
-                <ul id="messageHistoryList">
-                    <li>No history yet!</li>
-                </ul>
+            <div class="flex-grow flex items-center justify-center w-full min-h-[100px] bg-white/50 rounded-lg p-4 shadow-inner text-center">
+                <p id="moodMessageDisplay" class="text-xl text-gray-700 italic leading-relaxed">
+                    Click a button above for a special message!
+                </p>
             </div>
-            <button id="clearHistoryButton" class="secondary-button">Clear History</button>
-        </section>
+        </div>
 
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
