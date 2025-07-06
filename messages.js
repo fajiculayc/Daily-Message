@@ -1,5 +1,3 @@
-// messages.js
-
 // IMPORTANT: Customize these messages! Add many more for a rich experience.
 // Ensure each array has at least one message.
 
