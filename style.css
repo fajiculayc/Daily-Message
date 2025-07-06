@@ -1,279 +1,30 @@
-:root {
-    --primary-pink: #ff69b4; /* Hot pink */
-    --darker-pink: #e05e9e; /* Darker pink on hover */
-    --light-grey: #f0f2f5;
-    --dark-grey-text: #333;
-    --medium-grey-text: #5a5a5a;
-    --white: #ffffff;
-    --border-radius-card: 15px;
-    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
+/* Custom CSS (beyond Tailwind, or for specific overrides) */
 
+/* General font family definitions */
 body {
-    font-family: 'Montserrat', sans-serif; /* Montserrat for general UI, Sacramento for messages */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: var(--light-grey);
-    color: var(--dark-grey-text);
-    text-align: center;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow: hidden; /* Prevent scroll on screen transitions */
+    font-family: 'Inter', sans-serif; /* For general text */
 }
 
-.app-container {
-    background-color: var(--white);
-    padding: 30px;
-    border-radius: var(--border-radius-card);
-    box-shadow: var(--box-shadow);
-    max-width: 500px;
-    width: 100%;
-    position: relative; /* For absolute positioning of screens */
-    height: 600px; /* Fixed height for consistent screen sizing */
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; /* Hide overflowing screens */
+.handwriting {
+    font-family: 'Dancing Script', cursive; /* For titles/special text */
 }
 
-/* Header styles */
-header {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Center title by default */
-    margin-bottom: 20px;
-    position: relative; /* For absolute positioning of back button */
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
+/* Simple fade-in animation for the main card */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-#screenTitle {
-    font-family: 'Sacramento', cursive;
-    font-size: 2.2em;
-    color: var(--primary-pink);
-    margin: 0;
-    flex-grow: 1; /* Allows title to take available space */
+.fade-in {
+    animation: fadeIn 1.5s ease-in-out; /* Apply animation to the main card */
 }
 
-.back-button {
-    background: none;
-    border: none;
-    color: var(--primary-pink);
-    font-size: 1em;
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.2s ease;
-    position: absolute;
-    left: 0;
+/* Additional styles if needed for mood buttons beyond Tailwind */
+/* For example, if you want very specific hover effects not easily done with Tailwind */
+.mood-button {
+    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.back-button:hover {
-    background-color: rgba(255, 105, 180, 0.1);
-}
-
-.back-button.hidden {
-    display: none;
-}
-
-
-/* Screen Management */
-.screen {
-    position: absolute; /* Position screens on top of each other */
-    top: 90px; /* Adjust based on header height */
-    left: 0;
-    width: 100%;
-    height: calc(100% - 90px); /* Fill remaining height */
-    padding: 0 20px; /* Keep consistent padding */
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transform: translateX(100%); /* Start off-screen to the right */
-    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-}
-
-.screen.active {
-    opacity: 1;
-    transform: translateX(0); /* Slide into view */
-    position: relative; /* Take up space when active */
-}
-
-.screen.hidden {
-    display: none; /* Truly hide non-active screens to prevent interaction */
-}
-
-/* Message Card Styling (for both daily and category messages) */
-.message-card {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: var(--border-radius-card);
-    box-shadow: var(--box-shadow);
-    max-width: 400px;
-    width: 100%;
-    margin-bottom: 25px;
-    display: flex; /* For centering message text */
-    justify-content: center;
-    align-items: center;
-    min-height: 150px; /* Ensures card has some height */
-    overflow: hidden; /* For envelope animation */
-}
-
-.message-text {
-    font-family: 'Sacramento', cursive;
-    font-size: 2.2em;
-    line-height: 1.6;
-    color: var(--medium-grey-text);
-    font-weight: normal;
-    margin: 0; /* Remove default paragraph margin */
-    opacity: 1; /* Default state for daily message */
-    transition: opacity 0.5s ease-in-out;
-}
-
-/* Button Styling (General) */
-.main-button, .secondary-button, .category-button {
-    border: none;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
-    outline: none;
-    font-weight: 600;
-    margin-top: 10px; /* Spacing between buttons */
-    width: 80%; /* Make buttons take up more width */
-    max-width: 250px;
-}
-
-.main-button {
-    background-color: var(--primary-pink);
-    color: var(--white);
-}
-
-.main-button:hover {
-    background-color: var(--darker-pink);
-    transform: translateY(-2px);
-}
-
-.secondary-button {
-    background-color: #e9ecef; /* Light grey */
-    color: var(--dark-grey-text);
-}
-
-.secondary-button:hover {
-    background-color: #dee2e6;
-    transform: translateY(-2px);
-}
-
-/* Category Buttons Specific */
-.category-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Space between category buttons */
-    width: 100%;
-    max-width: 300px;
-    margin-bottom: 20px;
-}
-
-.category-button {
-    background-color: #a2d2ff; /* A nice light blue */
-    color: var(--dark-grey-text);
-    width: 100%;
-    padding: 15px;
-    font-size: 1.1em;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.category-button:hover {
-    background-color: #8ecae6;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-}
-
-/* Envelope Animation Styles */
-.envelope-container {
-    position: relative;
-    perspective: 1000px; /* For 3D transform */
-    height: 250px; /* Make card taller to accommodate letter */
-}
-
-.envelope {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f8f9fa; /* Light background for envelope */
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
-    overflow: hidden; /* Important to hide the letter initially */
-}
-
-.letter {
-    position: absolute;
-    width: 90%;
-    padding: 20px;
-    background-color: var(--white);
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    transform: translateY(100%); /* Start fully below the envelope opening */
-    transition: transform 0.8s ease-out, opacity 0.6s ease-out;
-    opacity: 0;
-    font-family: 'Sacramento', cursive;
-    font-size: 2.2em;
-    color: var(--medium-grey-text);
-    line-height: 1.6;
-    text-align: center;
-}
-
-.envelope.open .letter {
-    transform: translateY(0%); /* Slide up into view */
-    opacity: 1;
-}
-
-/* History Screen Styles */
-.history-list-container {
-    background-color: var(--light-grey);
-    padding: 15px;
-    border-radius: var(--border-radius-card);
-    width: 100%;
-    max-height: 400px; /* Limit height for scrolling */
-    overflow-y: auto; /* Enable scrolling */
-    margin-bottom: 20px;
-    box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
-    text-align: left; /* Align list items left */
-}
-
-#messageHistoryList {
-    list-style: none; /* Remove bullet points */
-    padding: 0;
-    margin: 0;
-}
-
-#messageHistoryList li {
-    background-color: var(--white);
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    font-size: 0.95em;
-    line-height: 1.4;
-    color: var(--dark-grey-text);
-}
-
-#messageHistoryList li strong {
-    color: var(--primary-pink);
-    font-size: 0.9em; /* Smaller for date/category */
-    display: block; /* Puts date/category on its own line */
-    margin-bottom: 5px;
-}
-
-/* General utility classes */
-.hidden {
-    display: none !important;
+.mood-button:active {
+    transform: translateY(1px); /* Slight press effect */
 }
