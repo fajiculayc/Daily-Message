@@ -5,8 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const moodMessageDisplayElement = document.getElementById('moodMessageDisplay');
     const moodButtons = document.querySelectorAll('.mood-button');
 
-    // --- Message Lists (NOW BACK IN THIS FILE) ---
-    // IMPORTANT: Customize these messages! Add many more for a rich experience.
+    // --- Message Lists ---
     const dailyMessages = [
         "You are the most amazing person I've ever met. Every day with you is a gift.",
         "Just a reminder that you're the best thing that's ever happened to me.",
@@ -115,45 +114,56 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
+    // Special messages for specific dates (Month-Day format)
+    const specialDatesMessages = {
+        "08-03": "Happy Anniversary, my love! Every year with you is a treasure. Thank you for everything. I love you more than words can express.",
+        "10-27": "Happy Birthday to the most beautiful soul! You light up my world."
+    };
+
+
     // --- Utility Functions ---
     function getTodayDate() {
         const today = new Date();
         return today.toISOString().slice(0, 10); // "YYYY-MM-DD" format
     }
 
+    // Function to get the day of the year (1-366)
+    function getDayOfYear(date) {
+        const start = new Date(date.getFullYear(), 0, 0);
+        const diff = date - start;
+        const oneDay = 1000 * 60 * 60 * 24;
+        return Math.floor(diff / oneDay);
+    }
+
     function selectAndDisplayDailyMessage() {
-        const todayDate = getTodayDate();
-        let lastShownDate = localStorage.getItem('lastShownDate_Daily'); // Specific key for daily message date
-        let storedMessageIndex = parseInt(localStorage.getItem('lastMessageIndex_Daily')); // Specific key for daily message index
+        const today = new Date(); // Get full date object
+        const todayDate = today.toISOString().slice(0, 10); // "YYYY-MM-DD"
+        const todayMonthDay = todayDate.slice(5); // "MM-DD"
 
         let messageToDisplay;
-        let newMessageIndex;
 
-        if (lastShownDate !== todayDate) {
-            do {
-                newMessageIndex = Math.floor(Math.random() * dailyMessages.length);
-            } while (dailyMessages.length > 1 && newMessageIndex === storedMessageIndex);
-
-            messageToDisplay = dailyMessages[newMessageIndex];
-            localStorage.setItem('lastShownDate_Daily', todayDate);
-            localStorage.setItem('lastMessageIndex_Daily', newMessageIndex);
+        // 1. Check for Special Dates First
+        if (specialDatesMessages[todayMonthDay]) {
+            messageToDisplay = specialDatesMessages[todayMonthDay];
         } else {
-            if (storedMessageIndex !== null && !isNaN(storedMessageIndex) && dailyMessages[storedMessageIndex]) {
-                messageToDisplay = dailyMessages[storedMessageIndex];
-            } else {
-                console.warn("Fallback: No valid stored daily message. Picking a new random one.");
-                newMessageIndex = Math.floor(Math.random() * dailyMessages.length);
-                messageToDisplay = dailyMessages[newMessageIndex];
-                localStorage.setItem('lastMessageIndex_Daily', newMessageIndex);
-            }
+            // 2. If no special date, use deterministic daily message
+            // Get a consistent index based on the day of the year
+            const dayOfYear = getDayOfYear(today);
+            const messageIndex = (dayOfYear - 1) % dailyMessages.length; // -1 because array is 0-indexed
+
+            messageToDisplay = dailyMessages[messageIndex];
+            
+            // Note: localStorage for daily message is removed here as it's now deterministic
+            // If you still want to ensure a NEW deterministic message each day
+            // (e.g., if you update the list of messages mid-year), you could
+            // re-introduce a 'lastShownDate_Daily' check to update the index.
+            // But for simple "same message for everyone on this day", this is sufficient.
         }
         dailyMessageElement.textContent = messageToDisplay;
     }
 
-    // Function to select and display a mood-specific message
     function selectAndDisplayMoodMessage(moodCategory) {
         const todayDate = getTodayDate();
-        // Use a unique localStorage key for each mood category
         const lastShownDateKey = `lastShownDate_${moodCategory}`;
         const lastMessageIndexKey = `lastMessageIndex_${moodCategory}`;
 
@@ -170,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let newMessageIndex;
 
         if (lastShownDate !== todayDate) {
-            // New day for this mood category: pick a new random message
             do {
                 newMessageIndex = Math.floor(Math.random() * messagesForMood.length);
             } while (messagesForMood.length > 1 && newMessageIndex === storedMessageIndex);
@@ -179,11 +188,9 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem(lastShownDateKey, todayDate);
             localStorage.setItem(lastMessageIndexKey, newMessageIndex);
         } else {
-            // Same day for this mood category: display the previously stored message
             if (storedMessageIndex !== null && !isNaN(storedMessageIndex) && messagesForMood[storedMessageIndex]) {
                 messageToDisplay = messagesForMood[storedMessageIndex];
             } else {
-                // Fallback if stored data is missing/corrupted for this mood on the same day
                 console.warn(`Fallback: No valid stored message for mood "${moodCategory}". Picking a new random one.`);
                 newMessageIndex = Math.floor(Math.random() * messagesForMood.length);
                 messageToDisplay = messagesForMood[newMessageIndex];
@@ -202,16 +209,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Initial Load ---
-    selectAndDisplayDailyMessage(); // Display the daily message
-    displayCurrentDate(); // Display the current date
-    // Initialize mood message area with default text
+    selectAndDisplayDailyMessage();
+    displayCurrentDate();
     moodMessageDisplayElement.textContent = "Click a button above for a special message!";
 
     // --- Event Listeners ---
     moodButtons.forEach(button => {
         button.addEventListener('click', (event) => {
-            const mood = event.target.dataset.mood; // Get the mood category from data-mood attribute
-            selectAndDisplayMoodMessage(mood); // Display the mood-specific message
+            const mood = event.target.dataset.mood;
+            selectAndDisplayMoodMessage(mood);
         });
     });
 });
