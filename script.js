@@ -98,6 +98,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- dated extras (kept opaque on purpose — see CLAUDE.md) ---
+    try {
+        const x = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob('eyJ5IjoyMDI2LCJtIjo3LCJkIjozLCJ1IjoiaHR0cHM6Ly9mYWppY3VsYXljLmdpdGh1Yi5pby9vdXItc2VhdHMvIiwidCI6IvCfjoEgSGFwcHkgQW5uaXZlcnNhcnkhIFlvdXIgc3VycHJpc2UgaXMgcmVhZHkg4oCUIHRhcCBtZSJ9'), c => c.charCodeAt(0))));
+        if (new Date() >= new Date(x.y, x.m, x.d)) {
+            const a = document.createElement('a');
+            a.href = x.u;
+            a.textContent = x.t;
+            a.className = 'mt-8 inline-block bg-gradient-to-r from-rose-400 to-teal-400 hover:from-rose-500 hover:to-teal-500 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg shadow-rose-300/50 transition transform hover:scale-105';
+            dateDisplayElement.insertAdjacentElement('afterend', a);
+        }
+    } catch (e) { /* the extra must never break the page */ }
+
     // --- Initial Load ---
     displayCurrentDate();
 
