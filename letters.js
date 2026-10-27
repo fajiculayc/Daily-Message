@@ -46,7 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
         letterView.classList.add('hidden');
         kissHeart.classList.remove('hidden');
         kissHeart.classList.add('fly');
-        setTimeout(() => { window.location.href = 'letters.html'; }, 1100);
+        // keep the query string so ?preview carries into the album
+        setTimeout(() => { window.location.href = 'letters.html' + location.search; }, 1100);
     }
 
     fetch('messages.json')
@@ -108,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     envelope.parentElement.classList.add('hidden');
                     fillLetter(todays);
                     letterView.classList.remove('hidden');
-                }, 900);
+                }, 1450);
             }, { once: true });
 
             letterClose.addEventListener('click', closeWithKiss);
