@@ -197,9 +197,9 @@ body {
 }
 
 .letter-body p {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.55rem;
-    line-height: 1.7;
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    line-height: 1.55;
     color: #3b3b4f;
     margin-bottom: 1.1rem;
 }
