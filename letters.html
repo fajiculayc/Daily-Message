@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Letters</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" href="icon.png" type="image/png">
+</head>
+<body class="bg-gradient-to-br from-rose-100 to-teal-100 min-h-screen p-6">
+
+    <div class="max-w-4xl mx-auto fade-in">
+        <div class="text-center mb-10 mt-6">
+            <h1 class="handwriting text-5xl text-rose-500 mb-3">Our Letters</h1>
+            <p class="text-gray-500">Every letter I&rsquo;ve written you, kept safe here. Forever.</p>
+            <a href="index.html" class="inline-block mt-4 text-sm text-rose-400 hover:text-rose-600 transition">&larr; back to today&rsquo;s message</a>
+        </div>
+
+        <p id="emptyNote" class="hidden text-center text-gray-400 italic">No letters yet&hellip; but some are already on their way. &hearts;</p>
+
+        <div id="lettersGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+
+    <div id="envelopeOverlay" class="envelope-overlay hidden">
+        <div class="envelope-wrap hidden">
+            <div class="envelope" id="envelope"></div>
+        </div>
+        <div class="letter-view hidden" id="letterView">
+            <div class="letter-paper">
+                <h2 class="handwriting letter-title" id="letterTitle"></h2>
+                <div class="letter-body" id="letterBody"></div>
+                <button id="letterClose" class="letter-close">Close &hearts;</button>
+            </div>
+        </div>
+        <div class="kiss-heart hidden" id="kissHeart">&#128140;</div>
+    </div>
+
+    <script src="letters.js"></script>
+</body>
+</html>

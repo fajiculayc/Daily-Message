@@ -9,7 +9,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css"> 
     
@@ -61,6 +61,30 @@
 
     </div>
 
+    <a id="albumLink" href="letters.html" class="album-link hidden">&#128140; Our Letters</a>
+
+    <div id="envelopeOverlay" class="envelope-overlay hidden">
+        <div class="envelope-wrap">
+            <p class="handwriting envelope-hint">A letter arrived for you&hellip; tap to open &hearts;</p>
+            <div class="envelope" id="envelope">
+                <div class="env-back"></div>
+                <div class="letter-peek"></div>
+                <div class="env-flap"></div>
+                <div class="env-pocket"></div>
+                <div class="env-seal">&hearts;</div>
+            </div>
+        </div>
+        <div class="letter-view hidden" id="letterView">
+            <div class="letter-paper">
+                <h2 class="handwriting letter-title" id="letterTitle"></h2>
+                <div class="letter-body" id="letterBody"></div>
+                <button id="letterClose" class="letter-close">Close &hearts;</button>
+            </div>
+        </div>
+        <div class="kiss-heart hidden" id="kissHeart">&#128140;</div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="letters.js"></script>
 </body>
 </html>
