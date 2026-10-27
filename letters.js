@@ -94,10 +94,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const todays = unlocked.find(l => preview || sameDay(l.unlockDate, now));
             if (!todays || !overlay) return;
 
+            // once she has opened it, later visits go straight to the page
+            // (the album button stays in the corner); preview always shows it
+            const openedKey = 'letterOpened_' + todays.unlock;
+            if (!preview && localStorage.getItem(openedKey)) return;
+
             overlay.classList.remove('hidden');
             envelope.addEventListener('click', () => {
                 if (envelope.classList.contains('open')) return;
                 envelope.classList.add('open');
+                localStorage.setItem(openedKey, '1');
                 setTimeout(() => {
                     envelope.parentElement.classList.add('hidden');
                     fillLetter(todays);
