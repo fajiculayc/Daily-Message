@@ -53,9 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(r => r.json())
         .then(data => {
             const now = new Date();
+            // ?preview shows everything regardless of unlock time (for testing)
+            const preview = new URLSearchParams(location.search).has('preview');
             const letters = (data.envelopeLetters || [])
                 .map(l => ({ ...l, unlockDate: new Date(l.unlock) }));
-            const unlocked = letters.filter(l => now >= l.unlockDate);
+            const unlocked = letters.filter(l => preview || now >= l.unlockDate);
 
             if (onAlbumPage) {
                 if (unlocked.length === 0) {
@@ -89,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 albumLink.classList.remove('hidden');
             }
 
-            const todays = unlocked.find(l => sameDay(l.unlockDate, now));
+            const todays = unlocked.find(l => preview || sameDay(l.unlockDate, now));
             if (!todays || !overlay) return;
 
             overlay.classList.remove('hidden');
