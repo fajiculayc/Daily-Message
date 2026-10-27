@@ -9,7 +9,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Dancing+Script:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css"> 
     
@@ -50,6 +50,7 @@
                 <button class="mood-button bg-purple-200 text-purple-700 hover:bg-purple-300 px-4 py-2 rounded-full text-sm font-semibold transition" data-mood="tampo">When Tampo</button>
                 <button class="mood-button bg-yellow-200 text-yellow-700 hover:bg-yellow-300 px-4 py-2 rounded-full text-sm font-semibold transition" data-mood="doubt">When in Doubt</button>
                 <button class="mood-button bg-green-200 text-green-700 hover:bg-green-300 px-4 py-2 rounded-full text-sm font-semibold transition" data-mood="motivation">Need Motivation</button>
+                <a id="albumLink" href="letters.html" class="hidden bg-pink-200 text-pink-700 hover:bg-pink-300 px-4 py-2 rounded-full text-sm font-semibold transition">&#128140; Our Letters</a>
             </div>
 
             <div class="flex-grow flex items-center justify-center w-full min-h-[100px] bg-white/50 rounded-lg p-4 shadow-inner text-center">
@@ -61,6 +62,28 @@
 
     </div>
 
+    <div id="envelopeOverlay" class="envelope-overlay hidden">
+        <div class="envelope-wrap">
+            <p class="handwriting envelope-hint">A letter arrived for you&hellip; tap to open &hearts;</p>
+            <div class="envelope" id="envelope">
+                <div class="env-back"></div>
+                <div class="letter-peek"></div>
+                <div class="env-flap"></div>
+                <div class="env-pocket"></div>
+                <div class="env-seal">&hearts;</div>
+            </div>
+        </div>
+        <div class="letter-view hidden" id="letterView">
+            <div class="letter-paper">
+                <h2 class="handwriting letter-title" id="letterTitle"></h2>
+                <div class="letter-body" id="letterBody"></div>
+                <button id="letterClose" class="letter-close">Close &hearts;</button>
+            </div>
+        </div>
+        <div class="kiss-heart hidden" id="kissHeart">&#128140;</div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="letters.js"></script>
 </body>
 </html>
