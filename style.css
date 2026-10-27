@@ -240,25 +240,6 @@ body {
     100% { transform: translate(38vw, -44vh) scale(0.2) rotate(30deg); opacity: 0; }
 }
 
-/* Floating album link on the main page */
-.album-link {
-    position: fixed;
-    right: 1.25rem;
-    bottom: 1.25rem;
-    z-index: 40;
-    padding: 0.55rem 1.1rem;
-    border-radius: 9999px;
-    background: #fff;
-    color: #d4567a;
-    font-weight: 600;
-    font-size: 0.9rem;
-    box-shadow: 0 6px 18px rgba(212, 86, 122, 0.3);
-    transition: transform 0.2s ease;
-}
-
-.album-link:hover { transform: scale(1.05); }
-.album-link.hidden { display: none; }
-
 /* Album page cards */
 .album-card {
     display: flex;

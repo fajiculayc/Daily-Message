@@ -90,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // --- index page ---
             if (albumLink && unlocked.length > 0) {
                 albumLink.classList.remove('hidden');
+                albumLink.href = 'letters.html' + location.search;
             }
 
             const todays = unlocked.find(l => preview || sameDay(l.unlockDate, now));
