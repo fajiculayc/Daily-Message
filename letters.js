@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const envelope = document.getElementById('envelope');
     const letterView = document.getElementById('letterView');
     const letterTitle = document.getElementById('letterTitle');
+    const letterDate = document.getElementById('letterDate');
     const letterBody = document.getElementById('letterBody');
     const letterClose = document.getElementById('letterClose');
     const kissHeart = document.getElementById('kissHeart');
@@ -22,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fillLetter(letter) {
         letterTitle.textContent = letter.title;
+        letterDate.textContent = letter.unlockDate.toLocaleDateString('en-US',
+            { year: 'numeric', month: 'long', day: 'numeric' });
         letterBody.innerHTML = '';
         letter.body.split('\n\n').forEach(part => {
             const p = document.createElement('p');
